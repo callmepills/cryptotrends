@@ -1,0 +1,104 @@
+<div class="container-fluid">
+
+  <h1 class="display-4">CryptoTrends</h1>
+
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Rank</th>
+      <th scope="col">Name</th>
+      <th scope="col" class="text-right">Price (USD)</th>
+      <th scope="col" class="text-right">Price (<i class="fa fa-btc"></i>)</th>
+      <th scope="col" class="text-right sortable" (click)="sort('oneDayDiff')">
+        1d
+        <i class="fa"
+           [class.fa-sort]="model.sortColumn !== 'oneDayDiff'"
+           [class.fa-sort-desc]="model.sortColumn === 'oneDayDiff' && model.sortOrder === 'desc'"
+           [class.fa-sort-asc]="model.sortColumn === 'oneDayDiff' && model.sortOrder === 'asc'"></i>
+      </th>
+      <th scope="col" class="text-right sortable" (click)="sort('threeDayDiff')">
+        3d
+        <i class="fa"
+           [class.fa-sort]="model.sortColumn !== 'threeDayDiff'"
+           [class.fa-sort-desc]="model.sortColumn === 'threeDayDiff' && model.sortOrder === 'desc'"
+           [class.fa-sort-asc]="model.sortColumn === 'threeDayDiff' && model.sortOrder === 'asc'"></i>
+      </th>
+      <th scope="col" class="text-right sortable" (click)="sort('oneWeekDiff')">
+        1w
+        <i class="fa"
+           [class.fa-sort]="model.sortColumn !== 'oneWeekDiff'"
+           [class.fa-sort-desc]="model.sortColumn === 'oneWeekDiff' && model.sortOrder === 'desc'"
+           [class.fa-sort-asc]="model.sortColumn === 'oneWeekDiff' && model.sortOrder === 'asc'"></i>
+      </th>
+      <th scope="col" class="text-right sortable" (click)="sort('oneMonthDiff')">
+        1m
+        <i class="fa"
+           [class.fa-sort]="model.sortColumn !== 'oneMonthDiff'"
+           [class.fa-sort-desc]="model.sortColumn === 'oneMonthDiff' && model.sortOrder === 'desc'"
+           [class.fa-sort-asc]="model.sortColumn === 'oneMonthDiff' && model.sortOrder === 'asc'"></i>
+      </th>
+      <th scope="col" class="text-right sortable" (click)="sort('threeMonthDiff')">
+        3m
+        <i class="fa"
+           [class.fa-sort]="model.sortColumn !== 'threeMonthDiff'"
+           [class.fa-sort-desc]="model.sortColumn === 'threeMonthDiff' && model.sortOrder === 'desc'"
+           [class.fa-sort-asc]="model.sortColumn === 'threeMonthDiff' && model.sortOrder === 'asc'"></i>
+      </th>
+      <th scope="col" class="text-right sortable" (click)="sort('oneYearDiff')">
+        1y
+        <i class="fa"
+           [class.fa-sort]="model.sortColumn !== 'oneYearDiff'"
+           [class.fa-sort-desc]="model.sortColumn === 'oneYearDiff' && model.sortOrder === 'desc'"
+           [class.fa-sort-asc]="model.sortColumn === 'oneYearDiff' && model.sortOrder === 'asc'"></i>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let crypto of model.cryptos">
+      <th>
+        {{crypto.rank}}
+      </th>
+      <td>
+        {{crypto.name}} ({{crypto.symbol}})
+      </td>
+      <td class="text-right">
+        ${{crypto.usdPrice | number:'1.2-2'}}
+      </td>
+      <td class="text-right">
+        {{crypto.btcPrice | number:'1.8-8'}}
+      </td>
+      <td class="text-right" [title]="crypto.oneDayPrice | number:'1.8-8'">
+        <span [ngClass]="crypto.oneDayDiff < 0 ? 'negative' : 'positive'">
+          {{(crypto.oneDayDiff < 0 ? crypto.oneDayDiff * -1 : crypto.oneDayDiff) | number:'1.2-2'}}%
+        </span>
+      </td>
+      <td class="text-right" [title]="crypto.threeDayPrice | number:'1.8-8'">
+        <span [ngClass]="crypto.threeDayDiff < 0 ? 'negative' : 'positive'">
+          {{(crypto.threeDayDiff < 0 ? crypto.threeDayDiff * -1 : crypto.threeDayDiff) | number:'1.2-2'}}%
+        </span>
+      </td>
+      <td class="text-right" [title]="crypto.oneWeekPrice | number:'1.8-8'">
+        <span [ngClass]="crypto.oneWeekDiff < 0 ? 'negative' : 'positive'">
+          {{(crypto.oneWeekDiff < 0 ? crypto.oneWeekDiff * -1 : crypto.oneWeekDiff) | number:'1.2-2'}}%
+        </span>
+      </td>
+      <td class="text-right" [title]="crypto.oneMonthPrice | number:'1.8-8'">
+        <span [ngClass]="crypto.oneMonthDiff < 0 ? 'negative' : 'positive'">
+          {{(crypto.oneMonthDiff < 0 ? crypto.oneMonthDiff * -1 : crypto.oneMonthDiff) | number:'1.2-2'}}%
+        </span>
+      </td>
+      <td class="text-right" [title]="crypto.threeMonthPrice | number:'1.8-8'">
+        <span [ngClass]="crypto.threeMonthDiff < 0 ? 'negative' : 'positive'">
+          {{(crypto.threeMonthDiff < 0 ? crypto.threeMonthDiff * -1 : crypto.threeMonthDiff) | number:'1.2-2'}}%
+        </span>
+      </td>
+      <td class="text-right" [title]="crypto.oneYearPrice | number:'1.8-8'">
+        <span [ngClass]="crypto.oneYearDiff < 0 ? 'negative' : 'positive'">
+          {{(crypto.oneYearDiff < 0 ? crypto.oneYearDiff * -1 : crypto.oneYearDiff) | number:'1.2-2'}}%
+        </span>
+      </td>
+    </tr>
+    <tr>
+    </tbody>
+  </table>
+</div>

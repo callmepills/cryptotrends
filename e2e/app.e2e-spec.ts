@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('cointrends App', () => {
+describe('cryptotrends App', () => {
   let page: AppPage;
 
   beforeEach(() => {

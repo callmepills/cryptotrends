@@ -1,0 +1,18 @@
+{
+  "/api": {
+    "target": "https://api.coinmarketcap.com",
+    "changeOrigin": true,
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  },
+  "/graphs2": {
+    "target": "https://graphs2.coinmarketcap.com",
+    "changeOrigin": true,
+    "secure": false,
+    "pathRewrite": {
+      "^/graphs2": ""
+    }
+  }
+}
