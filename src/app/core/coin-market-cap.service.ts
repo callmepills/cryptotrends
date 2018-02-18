@@ -8,8 +8,8 @@ export class CoinMarketCapService {
 
   }
 
-  getCurrenices() {
-    return this.http.get('/api/v1/ticker/?limit=10');
+  getCurrencies(limit: string) {
+    return this.http.get(`/api/v1/ticker/?limit=${limit}`);
   }
 
   getCharts(id: string) {

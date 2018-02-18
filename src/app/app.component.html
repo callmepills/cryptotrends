@@ -6,10 +6,10 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/price/btc" routerLinkActive="active">Price (BTC)</a>
+        <a class="nav-link" [routerLink]="['price', 'btc']" routerLinkActive="active" queryParamsHandling="merge">Price (BTC)</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/price/usd" routerLinkActive="active">Price (USD)</a>
+        <a class="nav-link" [routerLink]="['price', 'usd']" routerLinkActive="active" queryParamsHandling="merge">Price (USD)</a>
       </li>
     </ul>
     <span class="navbar-text">

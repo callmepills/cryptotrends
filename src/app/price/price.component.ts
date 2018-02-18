@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/forkJoin';
 import 'rxjs/add/operator/switchMap';
 
@@ -27,8 +28,11 @@ export class PriceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.paramMap
-      .subscribe((params: ParamMap) => {
+    Observable.combineLatest(this.route.paramMap, this.route.queryParamMap)
+      .subscribe((data: any) => {
+        const params = data[ 0 ];
+        const queryParams = data[ 1 ];
+
         this.model = {
           cryptos: []
         };
@@ -36,7 +40,7 @@ export class PriceComponent implements OnInit {
         this.model.unit = params.get('unit');
         const price = 'price_' + this.model.unit;
 
-        this.cmcService.getCurrenices()
+        this.cmcService.getCurrencies(queryParams.get('limit') || 10)
           .subscribe((currencies: any) => {
             const chartObersvables = currencies.map((currency, index) => {
               this.model.cryptos.push({
