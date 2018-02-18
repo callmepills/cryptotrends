@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core/core.module';
+import { HomeModule } from './home/home.module';
 import { PriceModule } from './price/price.module';
 
 
@@ -16,6 +17,7 @@ import { PriceModule } from './price/price.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
+    HomeModule,
     PriceModule
   ],
   providers: [],
