@@ -34,7 +34,9 @@ export class PriceComponent implements OnInit {
         const queryParams = data[ 1 ];
 
         this.model = {
-          cryptos: []
+          cryptos: [],
+          sortColumn: 'rank',
+          sortOrder: 'asc'
         };
 
         this.model.unit = params.get('unit');

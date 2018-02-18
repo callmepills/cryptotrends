@@ -2,9 +2,27 @@
   <table class="table table-hover">
     <thead>
     <tr>
-      <th scope="col">Rank</th>
-      <th scope="col">Name</th>
-      <th scope="col" class="text-right">Price</th>
+      <th scope="col" class="sortable" (click)="sort('rank')">
+        Rank
+        <i class="fa"
+           [class.fa-sort]="model.sortColumn !== 'rank'"
+           [class.fa-sort-desc]="model.sortColumn === 'rank' && model.sortOrder === 'desc'"
+           [class.fa-sort-asc]="model.sortColumn === 'rank' && model.sortOrder === 'asc'"></i>
+      </th>
+      <th scope="col" class="sortable" (click)="sort('name')">
+        Name
+        <i class="fa"
+           [class.fa-sort]="model.sortColumn !== 'name'"
+           [class.fa-sort-desc]="model.sortColumn === 'name' && model.sortOrder === 'desc'"
+           [class.fa-sort-asc]="model.sortColumn === 'name' && model.sortOrder === 'asc'"></i>
+      </th>
+      <th scope="col" class="text-right sortable" (click)="sort('price')">
+        Price
+        <i class="fa"
+           [class.fa-sort]="model.sortColumn !== 'price'"
+           [class.fa-sort-desc]="model.sortColumn === 'price' && model.sortOrder === 'desc'"
+           [class.fa-sort-asc]="model.sortColumn === 'price' && model.sortOrder === 'asc'"></i>
+      </th>
       <th scope="col" class="text-right sortable" (click)="sort('oneDayDiff')">
         1d
         <i class="fa"
