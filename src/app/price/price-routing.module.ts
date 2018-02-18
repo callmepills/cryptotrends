@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PriceComponent } from './price.component';
 
 const routes: Routes = [
-  { path: 'price', component: PriceComponent }
+  { path: 'price/:unit', component: PriceComponent }
 ];
 
 @NgModule({

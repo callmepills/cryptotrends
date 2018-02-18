@@ -58,34 +58,34 @@
         {{crypto.name}} ({{crypto.symbol}})
       </td>
       <td class="text-right">
-        {{crypto.price | number:'1.8-8'}}
+        {{crypto.price | price:model.unit}}
       </td>
-      <td class="text-right" [title]="crypto.oneDayPrice | number:'1.8-8'">
+      <td class="text-right" [title]="crypto.oneDayPrice | price:model.unit">
         <span [ngClass]="crypto.oneDayDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.oneDayDiff < 0 ? crypto.oneDayDiff * -1 : crypto.oneDayDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="text-right" [title]="crypto.threeDayPrice | number:'1.8-8'">
+      <td class="text-right" [title]="crypto.threeDayPrice | price:model.unit">
         <span [ngClass]="crypto.threeDayDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.threeDayDiff < 0 ? crypto.threeDayDiff * -1 : crypto.threeDayDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="text-right" [title]="crypto.oneWeekPrice | number:'1.8-8'">
+      <td class="text-right" [title]="crypto.oneWeekPrice | price:model.unit">
         <span [ngClass]="crypto.oneWeekDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.oneWeekDiff < 0 ? crypto.oneWeekDiff * -1 : crypto.oneWeekDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="text-right" [title]="crypto.oneMonthPrice | number:'1.8-8'">
+      <td class="text-right" [title]="crypto.oneMonthPrice | price:model.unit">
         <span [ngClass]="crypto.oneMonthDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.oneMonthDiff < 0 ? crypto.oneMonthDiff * -1 : crypto.oneMonthDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="text-right" [title]="crypto.threeMonthPrice | number:'1.8-8'">
+      <td class="text-right" [title]="crypto.threeMonthPrice | price:model.unit">
         <span [ngClass]="crypto.threeMonthDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.threeMonthDiff < 0 ? crypto.threeMonthDiff * -1 : crypto.threeMonthDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="text-right" [title]="crypto.oneYearPrice | number:'1.8-8'">
+      <td class="text-right" [title]="crypto.oneYearPrice | price:model.unit">
         <span [ngClass]="crypto.oneYearDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.oneYearDiff < 0 ? crypto.oneYearDiff * -1 : crypto.oneYearDiff) | number:'1.2-2'}}%
         </span>

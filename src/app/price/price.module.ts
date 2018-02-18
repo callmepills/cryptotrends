@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { PriceRoutingModule } from './price-routing.module';
 import { PriceComponent } from './price.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    PriceRoutingModule
+    PriceRoutingModule,
+    SharedModule
   ],
   declarations: [
     PriceComponent

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/forkJoin';
+import 'rxjs/add/operator/switchMap';
 
 import { CoinMarketCapService } from '../core/coin-market-cap.service';
 
@@ -19,33 +21,40 @@ const ONE_YEAR = 365 * ONE_DAY;
 export class PriceComponent implements OnInit {
   model: any;
 
-  constructor(private cmcService: CoinMarketCapService) {
+  constructor(private cmcService: CoinMarketCapService,
+              private route: ActivatedRoute) {
 
   }
 
   ngOnInit() {
-    this.model = {
-      cryptos: []
-    };
+    this.route.paramMap
+      .subscribe((params: ParamMap) => {
+        this.model = {
+          cryptos: []
+        };
 
-    this.cmcService.getCurrenices()
-      .subscribe((currencies: any) => {
-        const chartObersvables = currencies.map((currency, index) => {
-          this.model.cryptos.push({
-            id: currency.id,
-            rank: currency.rank,
-            name: currency.name,
-            symbol: currency.symbol,
-            price: currency.price_btc
-          });
+        this.model.unit = params.get('unit');
+        const price = 'price_' + this.model.unit;
 
-          return this.cmcService.getCharts(currency.id)
-            .subscribe((charts: any) => {
-              this.loadPricesAndDiffs(this.model.cryptos[ index ], charts.price_btc.reverse());
+        this.cmcService.getCurrenices()
+          .subscribe((currencies: any) => {
+            const chartObersvables = currencies.map((currency, index) => {
+              this.model.cryptos.push({
+                id: currency.id,
+                rank: currency.rank,
+                name: currency.name,
+                symbol: currency.symbol,
+                price: currency[ price ]
+              });
+
+              return this.cmcService.getCharts(currency.id)
+                .subscribe((charts: any) => {
+                  this.loadPricesAndDiffs(this.model.cryptos[ index ], charts[ price ].reverse());
+                });
             });
-        });
 
-        return Observable.forkJoin(chartObersvables);
+            return Observable.forkJoin(chartObersvables);
+          });
       });
   }
 
@@ -80,7 +89,7 @@ export class PriceComponent implements OnInit {
     } else {
       this.model.sortColumn = column;
       this.model.sortOrder = 'desc';
-      this.model.cryptos.sort((a, b) => b[column] - a[column]);
+      this.model.cryptos.sort((a, b) => b[ column ] - a[ column ]);
     }
   }
 }
