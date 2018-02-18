@@ -12,11 +12,11 @@ const THREE_MONTH = 90 * ONE_DAY;
 const ONE_YEAR = 365 * ONE_DAY;
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: [ './home.component.scss' ]
+  selector: 'app-price',
+  templateUrl: './price.component.html',
+  styleUrls: [ './price.component.scss' ]
 })
-export class HomeComponent implements OnInit {
+export class PriceComponent implements OnInit {
   model: any;
 
   constructor(private cmcService: CoinMarketCapService) {
