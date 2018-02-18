@@ -36,8 +36,7 @@ export class PriceComponent implements OnInit {
             rank: currency.rank,
             name: currency.name,
             symbol: currency.symbol,
-            btcPrice: currency.price_btc,
-            usdPrice: currency.price_usd
+            price: currency.price_btc
           });
 
           return this.cmcService.getCharts(currency.id)
@@ -53,17 +52,17 @@ export class PriceComponent implements OnInit {
   loadPricesAndDiffs(crypto: any, chart: Array<Array<number>>) {
     const currentTime = new Date().getTime();
     crypto.oneDayPrice = this.getHistoricPrice(chart, currentTime - ONE_DAY);
-    crypto.oneDayDiff = this.getHistoricDiff(crypto.btcPrice, crypto.oneDayPrice);
+    crypto.oneDayDiff = this.getHistoricDiff(crypto.price, crypto.oneDayPrice);
     crypto.threeDayPrice = this.getHistoricPrice(chart, currentTime - THREE_DAY);
-    crypto.threeDayDiff = this.getHistoricDiff(crypto.btcPrice, crypto.threeDayPrice);
+    crypto.threeDayDiff = this.getHistoricDiff(crypto.price, crypto.threeDayPrice);
     crypto.oneWeekPrice = this.getHistoricPrice(chart, currentTime - ONE_WEEK);
-    crypto.oneWeekDiff = this.getHistoricDiff(crypto.btcPrice, crypto.oneWeekPrice);
+    crypto.oneWeekDiff = this.getHistoricDiff(crypto.price, crypto.oneWeekPrice);
     crypto.oneMonthPrice = this.getHistoricPrice(chart, currentTime - ONE_MONTH);
-    crypto.oneMonthDiff = this.getHistoricDiff(crypto.btcPrice, crypto.oneMonthPrice);
+    crypto.oneMonthDiff = this.getHistoricDiff(crypto.price, crypto.oneMonthPrice);
     crypto.threeMonthPrice = this.getHistoricPrice(chart, currentTime - THREE_MONTH);
-    crypto.threeMonthDiff = this.getHistoricDiff(crypto.btcPrice, crypto.threeMonthPrice);
+    crypto.threeMonthDiff = this.getHistoricDiff(crypto.price, crypto.threeMonthPrice);
     crypto.oneYearPrice = this.getHistoricPrice(chart, currentTime - ONE_YEAR);
-    crypto.oneYearDiff = this.getHistoricDiff(crypto.btcPrice, crypto.oneYearPrice);
+    crypto.oneYearDiff = this.getHistoricDiff(crypto.price, crypto.oneYearPrice);
   }
 
   getHistoricPrice(chart: Array<Array<number>>, startTime: number) {

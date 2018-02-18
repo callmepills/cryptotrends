@@ -1,14 +1,10 @@
 <div class="container-fluid">
-
-  <h1 class="display-4">CryptoTrends</h1>
-
   <table class="table table-hover">
     <thead>
     <tr>
       <th scope="col">Rank</th>
       <th scope="col">Name</th>
-      <th scope="col" class="text-right">Price (USD)</th>
-      <th scope="col" class="text-right">Price (<i class="fa fa-btc"></i>)</th>
+      <th scope="col" class="text-right">Price</th>
       <th scope="col" class="text-right sortable" (click)="sort('oneDayDiff')">
         1d
         <i class="fa"
@@ -62,10 +58,7 @@
         {{crypto.name}} ({{crypto.symbol}})
       </td>
       <td class="text-right">
-        ${{crypto.usdPrice | number:'1.2-2'}}
-      </td>
-      <td class="text-right">
-        {{crypto.btcPrice | number:'1.8-8'}}
+        {{crypto.price | number:'1.8-8'}}
       </td>
       <td class="text-right" [title]="crypto.oneDayPrice | number:'1.8-8'">
         <span [ngClass]="crypto.oneDayDiff < 0 ? 'negative' : 'positive'">
