@@ -1,5 +1,9 @@
-.sortable {
+thead th {
   cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .positive {

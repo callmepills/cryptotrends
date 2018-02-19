@@ -55,7 +55,7 @@ export class PriceComponent implements OnInit {
 
               return this.cmcService.getCharts(currency.id)
                 .subscribe((charts: any) => {
-                  this.loadPricesAndDiffs(this.model.cryptos[ index ], charts[ price ].reverse());
+                  this.loadDiffs(this.model.cryptos[ index ], charts[ price ].reverse());
                 });
             });
 
@@ -64,28 +64,19 @@ export class PriceComponent implements OnInit {
       });
   }
 
-  loadPricesAndDiffs(crypto: any, chart: Array<Array<number>>) {
+  loadDiffs(crypto: any, chart: Array<Array<number>>) {
     const currentTime = new Date().getTime();
-    crypto.oneDayPrice = this.getHistoricPrice(chart, currentTime - ONE_DAY);
-    crypto.oneDayDiff = this.getHistoricDiff(crypto.price, crypto.oneDayPrice);
-    crypto.threeDayPrice = this.getHistoricPrice(chart, currentTime - THREE_DAY);
-    crypto.threeDayDiff = this.getHistoricDiff(crypto.price, crypto.threeDayPrice);
-    crypto.oneWeekPrice = this.getHistoricPrice(chart, currentTime - ONE_WEEK);
-    crypto.oneWeekDiff = this.getHistoricDiff(crypto.price, crypto.oneWeekPrice);
-    crypto.oneMonthPrice = this.getHistoricPrice(chart, currentTime - ONE_MONTH);
-    crypto.oneMonthDiff = this.getHistoricDiff(crypto.price, crypto.oneMonthPrice);
-    crypto.threeMonthPrice = this.getHistoricPrice(chart, currentTime - THREE_MONTH);
-    crypto.threeMonthDiff = this.getHistoricDiff(crypto.price, crypto.threeMonthPrice);
-    crypto.oneYearPrice = this.getHistoricPrice(chart, currentTime - ONE_YEAR);
-    crypto.oneYearDiff = this.getHistoricDiff(crypto.price, crypto.oneYearPrice);
+    crypto.oneDayDiff = this.getHistoricDiff(chart, currentTime - ONE_DAY, crypto.price);
+    crypto.threeDayDiff = this.getHistoricDiff(chart, currentTime - THREE_DAY, crypto.price);
+    crypto.oneWeekDiff = this.getHistoricDiff(chart, currentTime - ONE_WEEK, crypto.price);
+    crypto.oneMonthDiff = this.getHistoricDiff(chart, currentTime - ONE_MONTH, crypto.price);
+    crypto.threeMonthDiff = this.getHistoricDiff(chart, currentTime - THREE_MONTH, crypto.price);
+    crypto.oneYearDiff = this.getHistoricDiff(chart, currentTime - ONE_YEAR, crypto.price);
   }
 
-  getHistoricPrice(chart: Array<Array<number>>, startTime: number) {
-    return (chart.find(c => c[ 0 ] <= startTime) || chart[ chart.length - 1 ])[ 1 ];
-  }
-
-  getHistoricDiff(currentPrice: number, historicPrice: number) {
-    return (currentPrice - historicPrice) / historicPrice * 100;
+  getHistoricDiff(chart: Array<Array<number>>, startTime: number, price: number) {
+    const historicPrice = (chart.find(c => c[ 0 ] <= startTime) || chart[ chart.length - 1 ])[ 1 ];
+    return (price - historicPrice) / historicPrice * 100;
   }
 
   sort(column: string) {
@@ -94,8 +85,8 @@ export class PriceComponent implements OnInit {
       this.model.cryptos.reverse();
     } else {
       this.model.sortColumn = column;
-      this.model.sortOrder = 'desc';
-      this.model.cryptos.sort((a, b) => b[ column ] - a[ column ]);
+      this.model.sortOrder = 'asc';
+      this.model.cryptos.sort((a, b) => a[ column ] - b[ column ]);
     }
   }
 }
