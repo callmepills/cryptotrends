@@ -73,7 +73,7 @@
         {{crypto.rank}}
       </th>
       <td>
-        {{crypto.name}} ({{crypto.symbol}})
+        <a href="https://coinmarketcap.com/currencies/{{crypto.id}}/">{{crypto.name}} ({{crypto.symbol}})</a>
       </td>
       <td class="text-right">
         {{crypto.price | price:model.unit}}
