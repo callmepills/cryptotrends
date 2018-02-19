@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/observable/forkJoin';
@@ -36,13 +36,13 @@ export class PriceComponent implements OnInit {
         this.model = {
           cryptos: [],
           sortColumn: 'rank',
-          sortOrder: 'asc'
+          sortOrder: 'asc',
+          unit: params.get('unit')
         };
 
-        this.model.unit = params.get('unit');
         const price = 'price_' + this.model.unit;
 
-        this.cmcService.getCurrencies(queryParams.get('limit') || 10)
+        this.cmcService.getCurrencies(100)
           .subscribe((currencies: any) => {
             const chartObersvables = currencies.map((currency, index) => {
               this.model.cryptos.push({

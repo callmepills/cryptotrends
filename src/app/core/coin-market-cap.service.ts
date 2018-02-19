@@ -8,7 +8,7 @@ export class CoinMarketCapService {
 
   }
 
-  getCurrencies(limit: string) {
+  getCurrencies(limit: number) {
     return this.http.get(`/api/v1/ticker/?limit=${limit}`);
   }
 
