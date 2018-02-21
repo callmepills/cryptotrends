@@ -30,7 +30,7 @@
            [class.fa-sort-desc]="model.sortColumn === 'oneDayDiff' && model.sortOrder === 'desc'"
            [class.fa-sort-asc]="model.sortColumn === 'oneDayDiff' && model.sortOrder === 'asc'"></i>
       </th>
-      <th scope="col" class="text-right" (click)="sort('threeDayDiff')">
+      <th scope="col" class="d-md-none d-lg-table-cell text-right" (click)="sort('threeDayDiff')">
         3d
         <i class="fa"
            [class.fa-sort]="model.sortColumn !== 'threeDayDiff'"
@@ -51,7 +51,7 @@
            [class.fa-sort-desc]="model.sortColumn === 'oneMonthDiff' && model.sortOrder === 'desc'"
            [class.fa-sort-asc]="model.sortColumn === 'oneMonthDiff' && model.sortOrder === 'asc'"></i>
       </th>
-      <th scope="col" class="text-right" (click)="sort('threeMonthDiff')">
+      <th scope="col" class="d-md-none d-lg-table-cell text-right" (click)="sort('threeMonthDiff')">
         3m
         <i class="fa"
            [class.fa-sort]="model.sortColumn !== 'threeMonthDiff'"
@@ -74,7 +74,8 @@
       </th>
       <td>
         <a href="https://coinmarketcap.com/currencies/{{crypto.id}}/" target="_blank">
-          {{crypto.name}} ({{crypto.symbol}})
+          <span class="d-inline d-lg-none">{{crypto.symbol}}</span>
+          <span class="d-md-none d-lg-inline">{{crypto.name}} ({{crypto.symbol}})</span>
         </a>
       </td>
       <td class="text-right">
@@ -86,7 +87,7 @@
           {{(crypto.oneDayDiff < 0 ? crypto.oneDayDiff * -1 : crypto.oneDayDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="text-right">
+      <td class="d-md-none d-lg-table-cell text-right">
         <span [ngClass]="crypto.threeDayDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.threeDayDiff < 0 ? crypto.threeDayDiff * -1 : crypto.threeDayDiff) | number:'1.2-2'}}%
         </span>
@@ -101,7 +102,7 @@
           {{(crypto.oneMonthDiff < 0 ? crypto.oneMonthDiff * -1 : crypto.oneMonthDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="text-right">
+      <td class="d-md-none d-lg-table-cell text-right">
         <span [ngClass]="crypto.threeMonthDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.threeMonthDiff < 0 ? crypto.threeMonthDiff * -1 : crypto.threeMonthDiff) | number:'1.2-2'}}%
         </span>
