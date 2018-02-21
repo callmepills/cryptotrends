@@ -86,7 +86,11 @@ export class PriceComponent implements OnInit {
     } else {
       this.model.sortColumn = column;
       this.model.sortOrder = 'asc';
-      this.model.cryptos.sort((a, b) => a[ column ] - b[ column ]);
+      if (column === 'name') {
+        this.model.cryptos.sort((a, b) => a.name.localeCompare(b.name));
+      } else {
+        this.model.cryptos.sort((a, b) => a[ column ] - b[ column ]);
+      }
     }
   }
 }
