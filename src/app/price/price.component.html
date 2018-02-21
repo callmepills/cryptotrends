@@ -2,63 +2,81 @@
   <table class="table table-hover">
     <thead>
     <tr>
-      <th scope="col" (click)="sort('rank')">
+      <th scope="col" [class.sorted]="model.sortColumn === 'rank'" (click)="sort('rank')">
         Rank
         <i class="fa"
            [class.fa-sort]="model.sortColumn !== 'rank'"
            [class.fa-sort-desc]="model.sortColumn === 'rank' && model.sortOrder === 'desc'"
            [class.fa-sort-asc]="model.sortColumn === 'rank' && model.sortOrder === 'asc'"></i>
       </th>
-      <th scope="col" (click)="sort('name')">
+      <th scope="col" [class.sorted]="model.sortColumn === 'name'" (click)="sort('name')">
         Name
         <i class="fa"
            [class.fa-sort]="model.sortColumn !== 'name'"
            [class.fa-sort-desc]="model.sortColumn === 'name' && model.sortOrder === 'desc'"
            [class.fa-sort-asc]="model.sortColumn === 'name' && model.sortOrder === 'asc'"></i>
       </th>
-      <th scope="col" class="text-right" (click)="sort('price')">
+      <th scope="col" [class.sorted]="model.sortColumn === 'price'" class="text-right" (click)="sort('price')">
         Price
         <i class="fa"
            [class.fa-sort]="model.sortColumn !== 'price'"
            [class.fa-sort-desc]="model.sortColumn === 'price' && model.sortOrder === 'desc'"
            [class.fa-sort-asc]="model.sortColumn === 'price' && model.sortOrder === 'asc'"></i>
       </th>
-      <th scope="col" class="text-right" (click)="sort('oneDayDiff')">
+      <th scope="col"
+          [class.sorted]="model.sortColumn === 'oneDayDiff'"
+          class="text-right"
+          (click)="sort('oneDayDiff')">
         1d
         <i class="fa"
            [class.fa-sort]="model.sortColumn !== 'oneDayDiff'"
            [class.fa-sort-desc]="model.sortColumn === 'oneDayDiff' && model.sortOrder === 'desc'"
            [class.fa-sort-asc]="model.sortColumn === 'oneDayDiff' && model.sortOrder === 'asc'"></i>
       </th>
-      <th scope="col" class="d-md-none d-lg-table-cell text-right" (click)="sort('threeDayDiff')">
+      <th scope="col"
+          class="d-md-none d-lg-table-cell text-right"
+          [class.sorted]="model.sortColumn === 'threeDayDiff'"
+          (click)="sort('threeDayDiff')">
         3d
         <i class="fa"
            [class.fa-sort]="model.sortColumn !== 'threeDayDiff'"
            [class.fa-sort-desc]="model.sortColumn === 'threeDayDiff' && model.sortOrder === 'desc'"
            [class.fa-sort-asc]="model.sortColumn === 'threeDayDiff' && model.sortOrder === 'asc'"></i>
       </th>
-      <th scope="col" class="text-right" (click)="sort('oneWeekDiff')">
+      <th scope="col"
+          class="text-right"
+          [class.sorted]="model.sortColumn === 'oneWeekDiff'"
+          (click)="sort('oneWeekDiff')">
         1w
         <i class="fa"
            [class.fa-sort]="model.sortColumn !== 'oneWeekDiff'"
            [class.fa-sort-desc]="model.sortColumn === 'oneWeekDiff' && model.sortOrder === 'desc'"
            [class.fa-sort-asc]="model.sortColumn === 'oneWeekDiff' && model.sortOrder === 'asc'"></i>
       </th>
-      <th scope="col" class="text-right" (click)="sort('oneMonthDiff')">
+      <th scope="col"
+          class="text-right"
+          [class.sorted]="model.sortColumn === 'oneMonthDiff'"
+          (click)="sort('oneMonthDiff')">
         1m
         <i class="fa"
            [class.fa-sort]="model.sortColumn !== 'oneMonthDiff'"
            [class.fa-sort-desc]="model.sortColumn === 'oneMonthDiff' && model.sortOrder === 'desc'"
            [class.fa-sort-asc]="model.sortColumn === 'oneMonthDiff' && model.sortOrder === 'asc'"></i>
       </th>
-      <th scope="col" class="d-md-none d-lg-table-cell text-right" (click)="sort('threeMonthDiff')">
+      <th scope="col"
+          class="d-md-none d-lg-table-cell text-right"
+          [class.sorted]="model.sortColumn === 'threeMonthDiff'"
+          (click)="sort('threeMonthDiff')">
         3m
         <i class="fa"
            [class.fa-sort]="model.sortColumn !== 'threeMonthDiff'"
            [class.fa-sort-desc]="model.sortColumn === 'threeMonthDiff' && model.sortOrder === 'desc'"
            [class.fa-sort-asc]="model.sortColumn === 'threeMonthDiff' && model.sortOrder === 'asc'"></i>
       </th>
-      <th scope="col" class="text-right" (click)="sort('oneYearDiff')">
+      <th scope="col"
+          class="text-right"
+          [class.sorted]="model.sortColumn === 'oneYearDiff'"
+          (click)="sort('oneYearDiff')">
         1y
         <i class="fa"
            [class.fa-sort]="model.sortColumn !== 'oneYearDiff'"
@@ -69,45 +87,45 @@
     </thead>
     <tbody>
     <tr *ngFor="let crypto of model.cryptos">
-      <th>
+      <td [class.sorted]="model.sortColumn === 'rank'">
         {{crypto.rank}}
-      </th>
-      <td>
+      </td>
+      <td [class.sorted]="model.sortColumn === 'name'">
         <a href="https://coinmarketcap.com/currencies/{{crypto.id}}/" target="_blank">
           <span class="d-inline d-lg-none">{{crypto.symbol}}</span>
           <span class="d-md-none d-lg-inline">{{crypto.name}} ({{crypto.symbol}})</span>
         </a>
       </td>
-      <td class="text-right">
+      <td class="text-right" [class.sorted]="model.sortColumn === 'price'">
         <span *ngIf="model.unit ==='btc'">{{crypto.price | number:'1.8-8'}}</span>
         <span *ngIf="model.unit ==='usd'">{{crypto.price | currency:'USD':'symbol':'1.2-8'}}</span>
       </td>
-      <td class="text-right">
+      <td class="text-right" [class.sorted]="model.sortColumn === 'oneDayDiff'">
         <span [ngClass]="crypto.oneDayDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.oneDayDiff < 0 ? crypto.oneDayDiff * -1 : crypto.oneDayDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="d-md-none d-lg-table-cell text-right">
+      <td class="d-md-none d-lg-table-cell text-right" [class.sorted]="model.sortColumn === 'threeDayDiff'">
         <span [ngClass]="crypto.threeDayDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.threeDayDiff < 0 ? crypto.threeDayDiff * -1 : crypto.threeDayDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="text-right">
+      <td class="text-right" [class.sorted]="model.sortColumn === 'oneWeekDiff'">
         <span [ngClass]="crypto.oneWeekDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.oneWeekDiff < 0 ? crypto.oneWeekDiff * -1 : crypto.oneWeekDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="text-right">
+      <td class="text-right" [class.sorted]="model.sortColumn === 'oneMonthDiff'">
         <span [ngClass]="crypto.oneMonthDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.oneMonthDiff < 0 ? crypto.oneMonthDiff * -1 : crypto.oneMonthDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="d-md-none d-lg-table-cell text-right">
+      <td class="d-md-none d-lg-table-cell text-right" [class.sorted]="model.sortColumn === 'threeMonthDiff'">
         <span [ngClass]="crypto.threeMonthDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.threeMonthDiff < 0 ? crypto.threeMonthDiff * -1 : crypto.threeMonthDiff) | number:'1.2-2'}}%
         </span>
       </td>
-      <td class="text-right">
+      <td class="text-right" [class.sorted]="model.sortColumn === 'oneYearDiff'">
         <span [ngClass]="crypto.oneYearDiff < 0 ? 'negative' : 'positive'">
           {{(crypto.oneYearDiff < 0 ? crypto.oneYearDiff * -1 : crypto.oneYearDiff) | number:'1.2-2'}}%
         </span>
