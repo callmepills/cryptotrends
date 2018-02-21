@@ -73,7 +73,9 @@
         {{crypto.rank}}
       </th>
       <td>
-        <a href="https://coinmarketcap.com/currencies/{{crypto.id}}/">{{crypto.name}} ({{crypto.symbol}})</a>
+        <a href="https://coinmarketcap.com/currencies/{{crypto.id}}/" target="_blank">
+          {{crypto.name}} ({{crypto.symbol}})
+        </a>
       </td>
       <td class="text-right">
         <span *ngIf="model.unit ==='btc'">{{crypto.price | number:'1.8-8'}}</span>
