@@ -75,8 +75,8 @@ export class PriceComponent implements OnInit {
   }
 
   getHistoricDiff(chart: Array<Array<number>>, startTime: number, price: number) {
-    const historicPrice = (chart.find(c => c[ 0 ] <= startTime) || chart[ chart.length - 1 ])[ 1 ];
-    return (price - historicPrice) / historicPrice * 100;
+    const historicPrice = (chart.find(c => c[ 0 ] <= startTime));
+    return historicPrice ? (price - historicPrice[ 1 ]) / historicPrice[ 1 ] * 100 : 0;
   }
 
   sort(column: string) {
