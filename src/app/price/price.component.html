@@ -101,40 +101,22 @@
         <span *ngIf="model.unit ==='usd'">{{crypto.price | currency:'USD':'symbol':'1.2-8'}}</span>
       </td>
       <td class="text-right" [class.sorted]="model.sortColumn === 'oneDayDiff'">
-        <span *ngIf="crypto.oneDayDiff === 0">--</span>
-        <span *ngIf="crypto.oneDayDiff !== 0" [ngClass]="crypto.oneDayDiff < 0 ? 'negative' : 'positive'">
-            {{ (crypto.oneDayDiff < 0 ? crypto.oneDayDiff * -1 : crypto.oneDayDiff) | number:'1.2-2' }}%
-        </span>
+        <app-diff [diff]="crypto.oneDayDiff"></app-diff>
       </td>
       <td class="d-md-none d-lg-table-cell text-right" [class.sorted]="model.sortColumn === 'threeDayDiff'">
-        <span *ngIf="crypto.threeDayDiff === 0">--</span>
-        <span *ngIf="crypto.threeDayDiff !== 0" [ngClass]="crypto.threeDayDiff < 0 ? 'negative' : 'positive'">
-            {{ (crypto.threeDayDiff < 0 ? crypto.threeDayDiff * -1 : crypto.threeDayDiff) | number:'1.2-2' }}%
-        </span>
+        <app-diff [diff]="crypto.threeDayDiff"></app-diff>
       </td>
       <td class="text-right" [class.sorted]="model.sortColumn === 'oneWeekDiff'">
-        <span *ngIf="crypto.oneWeekDiff === 0">--</span>
-        <span *ngIf="crypto.oneWeekDiff !== 0" [ngClass]="crypto.oneWeekDiff < 0 ? 'negative' : 'positive'">
-            {{ (crypto.oneWeekDiff < 0 ? crypto.oneWeekDiff * -1 : crypto.oneWeekDiff) | number:'1.2-2' }}%
-        </span>
+        <app-diff [diff]="crypto.oneWeekDiff"></app-diff>
       </td>
       <td class="text-right" [class.sorted]="model.sortColumn === 'oneMonthDiff'">
-        <span *ngIf="crypto.oneMonthDiff === 0">--</span>
-        <span *ngIf="crypto.oneMonthDiff !== 0" [ngClass]="crypto.oneMonthDiff < 0 ? 'negative' : 'positive'">
-            {{ (crypto.oneMonthDiff < 0 ? crypto.oneMonthDiff * -1 : crypto.oneMonthDiff) | number:'1.2-2' }}%
-        </span>
+        <app-diff [diff]="crypto.oneMonthDiff"></app-diff>
       </td>
       <td class="d-md-none d-lg-table-cell text-right" [class.sorted]="model.sortColumn === 'threeMonthDiff'">
-        <span *ngIf="crypto.threeMonthDiff === 0">--</span>
-        <span *ngIf="crypto.threeMonthDiff !== 0" [ngClass]="crypto.threeMonthDiff < 0 ? 'negative' : 'positive'">
-            {{ (crypto.threeMonthDiff < 0 ? crypto.threeMonthDiff * -1 : crypto.threeMonthDiff) | number:'1.2-2' }}%
-        </span>
+        <app-diff [diff]="crypto.threeMonthDiff"></app-diff>
       </td>
       <td class="text-right" [class.sorted]="model.sortColumn === 'oneYearDiff'">
-        <span *ngIf="crypto.oneYearDiff === 0">--</span>
-        <span *ngIf="crypto.oneYearDiff !== 0" [ngClass]="crypto.oneYearDiff < 0 ? 'negative' : 'positive'">
-            {{ (crypto.oneYearDiff < 0 ? crypto.oneYearDiff * -1 : crypto.oneYearDiff) | number:'1.2-2' }}%
-        </span>
+        <app-diff [diff]="crypto.oneYearDiff"></app-diff>
       </td>
     </tr>
     <tr>

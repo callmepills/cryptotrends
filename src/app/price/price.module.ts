@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { PriceRoutingModule } from './price-routing.module';
 import { PriceComponent } from './price.component';
+import { DiffComponent } from './diff/diff.component';
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import { PriceComponent } from './price.component';
     PriceRoutingModule
   ],
   declarations: [
-    PriceComponent
+    PriceComponent,
+    DiffComponent
   ]
 })
 export class PriceModule { }

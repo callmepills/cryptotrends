@@ -1,0 +1,4 @@
+<span *ngIf="diff === 0">--</span>
+<span *ngIf="diff !== 0" [ngClass]="diff < 0 ? 'negative' : 'positive'">
+  {{ (diff < 0 ? diff * -1 : diff) | number:'1.2-2' }}%
+</span>
